@@ -45,6 +45,17 @@ echo "/path/to/your/data.csv" > report.txt
    - Start monitoring `report.txt` for a path to a CSV file
    - Displays real-time updates in the console and `report.txt`
 
+#### Example Call
+```python
+def read_report():
+    """
+    Read report.txt and print content to console.
+    """
+    with open('report.txt', 'r') as f:
+        content = f.read()
+    print(content)
+```
+
 #### Example Data
 
 ```
