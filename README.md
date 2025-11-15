@@ -192,3 +192,7 @@ Each suggestion in `data.json` contains:
   "submission_timestamp": "2024-01-15T14:30:45.123456"
 }
 ```
+
+### UML Sequence Diagrams
+##### CSV Report Generator Microservice
+![CSV Report Generator Microservice](ReportGeneratorUML.png)
