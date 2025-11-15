@@ -197,4 +197,4 @@ Each suggestion in `data.json` contains:
 ```
 
 ### UML Sequence Diagram
-![Suggestion Microservice](suggestion-microservice\suggestion-microservice-UML.png)
+![Suggestion Microservice](suggestion-microservice-UML.png)
