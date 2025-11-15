@@ -1,6 +1,72 @@
 # Group 15 Microservices
-## Data Reports Microservice
+## CSV Report Generator Microservice
+
+### Installation
+
+Install the required dependencies:
+```bash
+pip install pandas watchdog
+```
+or
+```bash
+pip install -r requirements.txt
+```
+
+### How to REQUEST Data (Submit CSV File)
+
+#### Method 1: Direct File Path Writing
+
+Write a CSV file path directly to `report.txt`. The GUI will automatically detect this and generate a report.
+
+```python
+# write file path to report.txt
+with open('report.txt', 'w') as f:
+    f.write("/path/to/your/data.csv")
+```
+
+#### Method 2: Command Line Request
+
+```bash
+# write file path to report.txt
+echo "/path/to/your/data.csv" > report.txt
+```
+
+### How to RECEIVE Data (Access Report)
+
+#### Starting the Receiver Service
+
+1. Run both services (order doesn't matter):
+   ```bash
+   python receive.py
+   python report.py
+   ```
+
+2. The services will:
+   - Start monitoring `report.txt` for a path to a CSV file
+   - Displays real-time updates in the console and `report.txt`
+
+#### Example Data
+
+```
+Dataset Summary Report
+==================================================
+
+File: sample data(Sheet1).csv
+
+Data Preview (first 5 rows):
+   ID           Name  Age
+0   1       John Doe   32
+1   2     Jane Smith   28
+2   3    Bob Johnson   45
+3   4    Alice Brown   29
+4   5  Carlie Wilson   35
+============================================================
+```
+
 ## Login Microservice
+
+[PUT YOUR STUFF HERE]
+
 ## Suggestion Microservice
 
 ### How to REQUEST Data (Submit Suggestions)
@@ -30,7 +96,7 @@ Supported file attachments:
 
 #### Starting the Receiver Service
 
-1. Run the receiver service (run this first):
+1. Run the receiver service (run this first before suggestion.py):
    ```bash
    python receive.py
    ```
