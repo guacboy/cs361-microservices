@@ -63,6 +63,9 @@ Data Preview (first 5 rows):
 ============================================================
 ```
 
+### UML Sequence Diagram
+![CSV Report Generator Microservice](ReportGeneratorUML.png)
+
 ## Login Microservice
 
 ### Installation
@@ -193,6 +196,5 @@ Each suggestion in `data.json` contains:
 }
 ```
 
-### UML Sequence Diagrams
-##### CSV Report Generator Microservice
-![CSV Report Generator Microservice](ReportGeneratorUML.png)
+### UML Sequence Diagram
+![Suggestion Microservice](suggestion-microservice\suggestion-microservice-UML.png)
