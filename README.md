@@ -65,7 +65,42 @@ Data Preview (first 5 rows):
 
 ## Login Microservice
 
-[PUT YOUR STUFF HERE]
+### Installation
+
+Install the required dependencies:
+pip install fastapi uvicorn pydantic
+
+### How to REQUEST Data (Authenticate a login with the user's credentials)
+Send a POST request with a JSON body containing the user's credentials.
+
+credentials = {
+    "username": "Thayer",
+    "password": "12345678"
+}
+
+response = requests.post(
+    "http://localhost:8000/login",
+    json=credentials
+)
+
+print(response.json())
+
+### How to RECEIVE Data (Process and Access User Credentials)
+
+Receives login data through a POST request. FastAPI
+converts the incoming JSON into a Pydantic model, making
+the values easy to access and validate.
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+@app.post("/login")
+def login_user(data: LoginRequest):
+    # Access fields with data.username and data.password
+    if data.username != "Thayer" or data.password != "12345678":
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    return {"message": f"Welcome {data.username}!"}
 
 ## Suggestion Microservice
 
