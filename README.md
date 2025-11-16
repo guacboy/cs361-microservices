@@ -209,3 +209,6 @@ Each suggestion in `data.json` contains:
 
 ### UML Sequence Diagram
 ![Suggestion Microservice](suggestion-microservice-UML.png)
+
+# Contributions
+**Dylan**: Developed the REQUEST and RECEIVE services for the CSV Report Generator Microservice and the Suggestion Microservice.
