@@ -212,3 +212,5 @@ Each suggestion in `data.json` contains:
 
 # Contributions
 **Dylan**: Developed the REQUEST and RECEIVE services for the CSV Report Generator Microservice and the Suggestion Microservice.
+
+**Yasser**: Created UML diagram for CSV Report Generator Microservice, tested and created video demo for the CSV Report Generator Microservice.
