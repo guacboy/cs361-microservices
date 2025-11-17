@@ -89,31 +89,39 @@ Install the required dependencies:
 Start the uvicorn server
    uvicorn main:app --reload --port 8000 
 
-Send a POST request with a JSON body containing the user's credentials.
+Send a POST request with a JSON body containing the user's credentials to the /login endpoint.
 
     credentials = {
         "username": "Thayer",
         "password": "12345678"
     }
 
-    def api_login(self, username, password):
+    def api_login(username, password):
+        # This sends the request to the microservice
         response = requests.post(
             "http://localhost:8000/login",
-        json={"username": username, "password": password}
+            json={"username": username, "password": password}
         )
+        return response
 
 ### How to RECEIVE Data (Process and Access User Credentials)
 
-Receives the response back from the server validating it as correct and generating a session token or an error.
+Receives the response back from the server, validating the status and extracting the session token or an error message.
 
-    def api_register(self, username, password):
-        response = requests.post(
-            "http://localhost:8000/register",
-            json={"username": username, "password": password}
-            )
-
-        if response.status_code == 200:
-            return response.json()
+    def process_login_response(response):
+    # This processes the data received from the microservice
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Login SUCCESS! User ID: {data['user_id']}")
+        print(f"Session Token: {data['session_token']}")
+        return data['session_token']
+    elif response.status_code == 401:
+        data = response.json()
+        print(f"Login FAILED. Error: {data['detail']}")
+        return None
+    else:
+        print("Error connecting to microservice.")
+        return None
 
 ## Suggestion Microservice
 
