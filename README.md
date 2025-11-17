@@ -85,6 +85,10 @@ Install the required dependencies:
     pip install fastapi uvicorn pydantic
 
 ### How to REQUEST Data (Authenticate a login with the user's credentials)
+
+Start the uvicorn server
+   uvicorn main:app --reload --port 8000 
+
 Send a POST request with a JSON body containing the user's credentials.
 
     credentials = {
@@ -92,29 +96,24 @@ Send a POST request with a JSON body containing the user's credentials.
         "password": "12345678"
     }
 
-    response = requests.post(
-        "http://localhost:8000/login",
-        json=credentials
-    )
-
-    print(response.json())
+    def api_login(self, username, password):
+        response = requests.post(
+            "http://localhost:8000/login",
+        json={"username": username, "password": password}
+        )
 
 ### How to RECEIVE Data (Process and Access User Credentials)
 
-Receives login data through a POST request. FastAPI
-converts the incoming JSON into a Pydantic model, making
-the values easy to access and validate.
+Receives the response back from the server validating it as correct and generating a session token or an error.
 
-    class LoginRequest(BaseModel):
-        username: str
-        password: str
+    def api_register(self, username, password):
+        response = requests.post(
+            "http://localhost:8000/register",
+            json={"username": username, "password": password}
+            )
 
-    @app.post("/login")
-    def login_user(data: LoginRequest):
-        # Access fields with data.username and data.password
-        if data.username != "Thayer" or data.password != "12345678":
-            raise HTTPException(status_code=401, detail="Invalid credentials")
-        return {"message": f"Welcome {data.username}!"}
+        if response.status_code == 200:
+            return response.json()
 
 ## Suggestion Microservice
 
@@ -214,3 +213,5 @@ Each suggestion in `data.json` contains:
 **Dylan**: Developed the REQUEST and RECEIVE services for the CSV Report Generator Microservice and the Suggestion Microservice.
 
 **Yasser**: Created UML diagram for CSV Report Generator Microservice, tested and created video demo for the CSV Report Generator Microservice.
+
+**Thayer**: Created the REQUEST and RECEIVE services for the Login Microservice, updated README for Login Microservice.
