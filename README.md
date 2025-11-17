@@ -123,6 +123,9 @@ Receives the response back from the server, validating the status and extracting
         print("Error connecting to microservice.")
         return None
 
+### UML Sequence Diagram
+<img width="1024" height="1024" alt="Login Microservice UML Diagram" src="https://github.com/user-attachments/assets/50aeae50-8d76-448a-8f1a-4ddc19514e5a" />
+
 ## Suggestion Microservice
 
 ### How to REQUEST Data (Submit Suggestions)
