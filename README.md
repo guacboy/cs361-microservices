@@ -228,3 +228,5 @@ Each suggestion in `data.json` contains:
 **Thayer**: Created the REQUEST and RECEIVE services for the Login Microservice, updated README for Login Microservice.
 
 **Sid**: Created UML diagram for Login Microservice, tested and created video demo for the Login Microservice, and updated README for Login Microservice.
+
+**Kylee**: Created UML diagram for Suggestion Microservice and created video demonstration for Suggestion Microservice.
