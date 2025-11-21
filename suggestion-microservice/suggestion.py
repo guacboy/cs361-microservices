@@ -15,69 +15,98 @@ class SuggestionApp:
         
         self.setup_ui()
         
-    def setup_ui(self):
+    def create_main_frame(self):
         """
-        Setup the user interface.
+        Create and return the main frame.
         """
-        # main frame
         main_frame = tk.Frame(self.root,
                               padx=20,
                               pady=20)
         main_frame.pack(fill=tk.BOTH,
                         expand=True)
-        
-        # title
-        title_label = tk.Label(main_frame,
+        return main_frame
+    
+    def create_title_section(self, parent):
+        """
+        Create the title section.
+        """
+        title_label = tk.Label(parent, 
                                text="Submit Your Suggestion", 
                                font=("Arial", 16, "bold"))
         title_label.pack(pady=10)
-        
-        # suggestion entry
-        entry_label = tk.Label(main_frame,
+    
+    def create_input_section(self, parent):
+        """
+        Create the suggestion input section.
+        """
+        entry_label = tk.Label(parent,
                                text="Enter your suggestion:", 
                                font=("Arial", 12))
         entry_label.pack(anchor="w",
                          pady=(20, 5))
         
-        self.entry_box = tk.Text(main_frame,
+        self.entry_box = tk.Text(parent,
                                  height=8,
                                  width=50, 
                                  font=("Arial", 10))
         self.entry_box.pack(fill=tk.BOTH,
                             expand=True,
                             pady=5)
-        
-        # attached file info
-        self.file_label = tk.Label(main_frame,
+    
+    def create_file_attachment_section(self, parent):
+        """
+        Create the file attachment section.
+        """
+        self.file_label = tk.Label(parent,
                                    text="No file attached", 
                                    fg="gray",
                                    font=("Arial", 9))
         self.file_label.pack(anchor="w",
                              pady=(5, 0))
-        
-        # button frame
-        button_frame = tk.Frame(main_frame)
+    
+    def create_button_section(self, parent):
+        """
+        Create the button section.
+        """
+        button_frame = tk.Frame(parent)
         button_frame.pack(fill=tk.X,
                           pady=20)
         
-        # attach file button
-        self.attach_btn = tk.Button(button_frame,
+        self.create_attach_button(button_frame)
+        self.create_submit_button(button_frame)
+    
+    def create_attach_button(self, parent):
+        """
+        Create the attach file button.
+        """
+        self.attach_btn = tk.Button(parent,
                                     text="Attach File", 
                                     command=self.attach_file,
                                     font=("Arial", 10))
         self.attach_btn.pack(side=tk.LEFT,
                              padx=(0, 10))
-        
-        # submit button
-        self.submit_btn = tk.Button(button_frame, text="Submit Suggestion", 
+    
+    def create_submit_button(self, parent):
+        """
+        Create the submit button.
+        """
+        self.submit_btn = tk.Button(parent, 
+                                    text="Submit Suggestion", 
                                     command=self.submit_suggestion,
                                     font=("Arial", 10, "bold"),
                                     bg="#4CAF50",
                                     fg="white")
         self.submit_btn.pack(side=tk.RIGHT)
-        
-        # initialize attached file
-        self.attached_file = None
+    
+    def setup_ui(self):
+        """
+        Setup the user interface by composing smaller functions.
+        """
+        main_frame = self.create_main_frame()
+        self.create_title_section(main_frame)
+        self.create_input_section(main_frame)
+        self.create_file_attachment_section(main_frame)
+        self.create_button_section(main_frame)
         
     def attach_file(self):
         """
